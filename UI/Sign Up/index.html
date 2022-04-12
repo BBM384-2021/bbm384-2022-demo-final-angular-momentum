@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedHU_CENG</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+        #wrapper {
+            width: 700px;
+            margin: 0 auto;
+        }
+
+
+
+        input {
+
+
+            border-radius: 5px;
+            border: 1px solid grey;
+
+        }
+
+
+
+
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .error {
+            color: red;
+            text-align: left;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div id="navbar-container">
+            <a class="navbar-brand" href="#!">Welcome To LinkedHU_CENG!</a>
+        </div>
+    </nav>
+
+
+    <div id="login-div" class="container box p20 mt-3 mb-3">
+        <h2 class="mb-5">Sign Up</h2>
+
+        <form>
+
+            <div class="container" style="display:flex; flex-direction:row;">
+                <div class="w-25 float-start col-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter name">
+                    </div>
+
+                </div>
+
+                <div class="w-75 float-start ps-2 col-6">
+                    <div class="form-group">
+                        <label for="surname">Surname</label>
+                        <input type="text" id="surname" class="form-control" placeholder="Enter surname">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container" style="display:flex; flex-direction: column;">
+                <div class="w-100 float-start ps-2 col-12">
+                    <div class="form-group mb-3">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="text" name="email" id="email"
+                            placeholder="Please enter your email">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container" style="display:flex; flex-direction:row;">
+
+                <div class="w-50 float-start ps-2 col-6">
+                    <div class="form-group">
+
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Enter password">
+
+                    </div>
+                </div>
+
+                <div class="w-50 float-start ps-2 col-6">
+                    <div class="form-group">
+
+                        <label for="repassword">Password Confirm</label>
+                        <input class="form-control" type="password" name="repassword" id="repassword"
+                            placeholder="Enter password again">
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+                <div class="container" style="display:flex; flex-direction:row;">
+
+                    <div class="w-50 float-start ps-2 col-6">
+                        <div class="form-group mb-3 ">
+                            <label for="telefon">Phone Number</label>
+                            <input class="form-control" type="text" name="telefon" id="telefon"
+                                placeholder="Your phone number">
+                        </div>
+                    </div>
+
+                    <div class="w-50 float-start ps-2 col-6">
+                        <div class="form-group mb-3">
+                            <label for="role" class="mb-2">Role</label>
+                            <select name="role" id="role" class="form-control">
+                                <option value="0">Student</option>
+                                <option value="1">Graduate</option>
+                                <option value="2">Academician</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group mb-3 mt-3">
+                    <button type="button" class="btn btn-primary w-100 p-1">Sign Up</button>
+                </div>
+
+        </form>
+
+        <hr class="star-light">
+
+        <div class="container"
+            style="position:relative; display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
+            <p>Already have an account?</p>
+            <a href="#" style="position: absolute; top: 25px;">Login!</a>
+        </div>
+
+    </div>
+
+    <!--
+    <div id="wrapper">
+        
+        <div class="error">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="Please enter your email">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="telefon">Telefon</label>
+            <input type="text" name="telefon" id="telefon" placeholder="Your phone number">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="password">Parola</label>
+            <input type="password" name="password" id="password" placeholder="Please enter your password">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="repassword">Parola Tekrar</label>
+            <input type="password" name="repassword" id="repassword" placeholder="Please enter your password again">
+
+        </div>
+
+        <button id="btn">Kaydet</button>
+
+    </div>
+    -->
+
+    <script>
+
+        // Bir sürü hazır JQuery Validation Pluginleri bulunmakta
+
+        $(document).ready(function () {
+
+
+            function isEmail(email) {
+                var pattern = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;;
+
+                return pattern.test(email);
+            }
+
+
+            $("#btn").click(function () {
+
+                var errormessage = "";
+                $(".error").html("");
+
+                if ($("#email").val() === "") {
+                    errormessage += "<p>Email information is essential.</p>";
+                }
+
+                else {
+                    if (isEmail($("#email").val()) == false) {
+
+                        errormessage += "<p>Invalid email address</p>";
+                    }
+                }
+
+
+                if ($("#telefon").val() === "") {
+                    errormessage += "<p>Phone number information is essential.</p>";
+                }
+
+                else {
+                    if ($.isNumeric($("#telefon").val()) == false) {
+                        errormessage += "<p>Invalid phone number</p>";
+                    }
+                }
+
+
+                if ($("#password").val() === "") {
+                    errormessage += "<p>Password is essential.</p>";
+                }
+
+                if ($("#repassword").val() != $("#password").val()) {
+                    errormessage += "<p>Passwords are not matched.</p>";
+                }
+
+                if (errormessage != "") {
+                    $(".error").html(errormessage);
+                }
+            })
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>
