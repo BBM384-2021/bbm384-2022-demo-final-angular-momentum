@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fa253a0-811a-41a4-8e09-8295ed1a31ec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/linkedhu_ceng/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/linkedhu_ceng/demo/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +63,8 @@
       <option name="presentableId" value="Default" />
       <updated>1649933812146</updated>
       <workItem from="1649933822893" duration="131000" />
-      <workItem from="1649956731400" duration="302000" />
+      <workItem from="1649956731400" duration="850000" />
+      <workItem from="1649957607273" duration="940000" />
     </task>
     <servers />
   </component>
@@ -80,6 +81,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1649933961216">
