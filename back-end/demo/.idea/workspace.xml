@@ -19,19 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa253a0-811a-41a4-8e09-8295ed1a31ec" name="Default Changelist" comment="Added title for view purposes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/linkedhu_ceng/demo/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/linkedhu_ceng/demo/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/linkedhu_ceng/demo/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/linkedhu_ceng/demo/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/linkedhu_ceng/demo/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/linkedhu_ceng/demo/service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/controller/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/controller/PostController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/dto/PostDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/dto/PostDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/repository/PostRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/repository/PostRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/service/PostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/service/PostService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/linkedhu_ceng/demo/service/UserService.class" afterDir="false" />
-    </list>
+    <list default="true" id="8fa253a0-811a-41a4-8e09-8295ed1a31ec" name="Default Changelist" comment="Added Update Post  and Delete Post" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +66,7 @@
       <updated>1649933812146</updated>
       <workItem from="1649933822893" duration="131000" />
       <workItem from="1649956731400" duration="850000" />
-      <workItem from="1649957607273" duration="6176000" />
+      <workItem from="1649957607273" duration="6743000" />
     </task>
     <task id="LOCAL-00001" summary="Added title for view purposes">
       <created>1649958752987</created>
@@ -87,7 +75,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649958752988</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Update Post  and Delete Post">
+      <created>1649964102654</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1649964102654</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,45 +102,46 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added title for view purposes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added title for view purposes" />
+    <MESSAGE value="Added Update Post  and Delete Post" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Update Post  and Delete Post" />
   </component>
   <component name="WindowStateProjectService">
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1649933961216">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1649933961216" />
-    <state width="1323" height="80" key="GridCell.Tab.0.bottom" timestamp="1649963752702">
+    <state width="1323" height="185" key="GridCell.Tab.0.bottom" timestamp="1649964089190">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="80" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1649963752702" />
-    <state width="1323" height="80" key="GridCell.Tab.0.center" timestamp="1649963752702">
+    <state width="1323" height="185" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1649964089190" />
+    <state width="1323" height="185" key="GridCell.Tab.0.center" timestamp="1649964089190">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="80" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1649963752702" />
-    <state width="1323" height="80" key="GridCell.Tab.0.left" timestamp="1649963752702">
+    <state width="1323" height="185" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1649964089190" />
+    <state width="1323" height="185" key="GridCell.Tab.0.left" timestamp="1649964089190">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="80" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1649963752702" />
-    <state width="1323" height="80" key="GridCell.Tab.0.right" timestamp="1649963752702">
+    <state width="1323" height="185" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1649964089190" />
+    <state width="1323" height="185" key="GridCell.Tab.0.right" timestamp="1649964089190">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="80" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1649963752702" />
-    <state width="1323" height="80" key="GridCell.Tab.1.bottom" timestamp="1649963752703">
+    <state width="1323" height="185" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1649964089190" />
+    <state width="1323" height="185" key="GridCell.Tab.1.bottom" timestamp="1649964089191">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="80" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1649963752703" />
-    <state width="1323" height="80" key="GridCell.Tab.1.center" timestamp="1649963752702">
+    <state width="1323" height="185" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1649964089191" />
+    <state width="1323" height="185" key="GridCell.Tab.1.center" timestamp="1649964089190">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="80" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1649963752702" />
-    <state width="1323" height="80" key="GridCell.Tab.1.left" timestamp="1649963752702">
+    <state width="1323" height="185" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1649964089190" />
+    <state width="1323" height="185" key="GridCell.Tab.1.left" timestamp="1649964089190">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="80" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1649963752702" />
-    <state width="1323" height="80" key="GridCell.Tab.1.right" timestamp="1649963752702">
+    <state width="1323" height="185" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1649964089190" />
+    <state width="1323" height="185" key="GridCell.Tab.1.right" timestamp="1649964089191">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="80" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1649963752702" />
+    <state width="1323" height="185" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1649964089191" />
     <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1649957036901">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
