@@ -49,7 +49,7 @@ public class PostController {
 
     @GetMapping("mypost/view")
     public ResponseEntity<?> myPosts() throws NullPointerException {
-        //User user=userService.getUser(securityService.getUser().getEmail());
+    
         User user = userService.getUser();
         UserDto user_v2 = new UserDto(user);
         List<PostDto> postList = postService.getPostsOfUser(user_v2.getUid());
