@@ -2,6 +2,7 @@ package linkedhu_ceng.demo.service;
 
 
 //import linkedhu_ceng.demo.config.SecurityConfig;
+import linkedhu_ceng.demo.dto.SignUpDto;
 import linkedhu_ceng.demo.dto.UserDto;
 import linkedhu_ceng.demo.dto.PostDto;
 import linkedhu_ceng.demo.entity.Post;
@@ -10,10 +11,13 @@ import linkedhu_ceng.demo.repository.PostRepository;
 import linkedhu_ceng.demo.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -52,6 +56,29 @@ public class PostService {
 
     public List<Post> getAllPost(){
         return postRepository.findAllByOrderByIdDesc();
+    }
+
+    public Post updatePost(PostDto postDto, Integer Id){
+        Post post = postRepository.findPostById(Id);
+
+        if (postDto.getId()!=null){
+            //Do Nothing
+            //post.setId(post.getId());
+            ;
+        }
+        if(postDto.getTitle() != null){
+            post.setTitle(postDto.getTitle());
+        }
+        if(postDto.getContent() != null){
+            post.setContent(postDto.getContent());
+        }
+
+        postRepository.save(post);
+        return post;
+    }
+
+    public void deletePost(Integer Id){
+        postRepository.deleteById(Id);
     }
 
 }
