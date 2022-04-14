@@ -70,4 +70,15 @@ public class AuthController {
         return new ResponseEntity<>("User registered successfully. \nUserId is: " + user.getUserId(), HttpStatus.OK);
 
     }
+    
+        /*@GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        URL url = new URL(request.getRequestURL().toString());
+        String urlStr = url.getProtocol() + "://" + url.getAuthority();
+        return "redirect:" + ssoServiceUrl + "/logout.do?redirect=" + urlStr + "&clientId=" + clientId;
+    }*/
 }
