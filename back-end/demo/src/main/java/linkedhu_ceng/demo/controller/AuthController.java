@@ -22,11 +22,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/auth")
 public class AuthController {
+
+    User user;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -63,7 +67,7 @@ public class AuthController {
         }
 
         // create user object
-        User user = new User();
+        user = new User();
         user.setName(signUpDto.getName());
         user.setEmail(signUpDto.getEmail());
         user.setSurname(signUpDto.getSurname());
@@ -85,6 +89,7 @@ public class AuthController {
         model.put("nameSurname", user.getName() + " " + user.getSurname());
         return model;
     }
+
 
     /*@GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -1,9 +1,7 @@
 package linkedhu_ceng.demo.service;
 
 import linkedhu_ceng.demo.dto.SignUpDto;
-import linkedhu_ceng.demo.entity.Post;
 import linkedhu_ceng.demo.entity.User;
-import linkedhu_ceng.demo.repository.PostRepository;
 import linkedhu_ceng.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,15 +9,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
-
-    @Autowired
-    PostRepository postRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -30,8 +23,7 @@ public class UserService {
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userId = authentication.getName();
-        Optional<User> optionalUser = userRepository.findByUserId(userId);
-        return optionalUser.get();
+        return userRepository.findUserByUserId(userId);
     }
 
     public User updateUser(SignUpDto signUpDto){
@@ -60,13 +52,6 @@ public class UserService {
     public void deleteUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userId = authentication.getName();
-
-        List<Post> posts = postRepository.findPostByUserOrderById(userRepository.findUserByUserId(userId));
-        for (Iterator<Post> iterator = posts.iterator(); iterator.hasNext();) {
-            Post post = iterator.next();
-            post.setUser(null);
-            iterator.remove(); //remove the child first
-        }
         userRepository.deleteById(userId);
     }
 }
