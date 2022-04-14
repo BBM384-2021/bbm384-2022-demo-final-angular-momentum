@@ -75,7 +75,15 @@ public class AuthController {
 
         userRepository.save(user);
 
-        return new ResponseEntity<>("User registered successfully. \nUserId is: " + user.getUserId(), HttpStatus.OK);
+        return new ResponseEntity<>("User registered successfully.", HttpStatus.OK);
+    }
+
+    @GetMapping("/signup/success")
+    public Map<String,Object> success(){
+        Map<String,Object> model = new HashMap<String,Object>();
+        model.put("id", user.getUserId());
+        model.put("nameSurname", user.getName() + " " + user.getSurname());
+        return model;
     }
 
     /*@GetMapping("/logout")
