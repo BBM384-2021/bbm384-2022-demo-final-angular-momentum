@@ -3,6 +3,7 @@ package linkedhu_ceng.demo.dto;
 
 public class PostDto {
     Integer id;
+    String title;
     String content;
 
     public Integer getId() {
