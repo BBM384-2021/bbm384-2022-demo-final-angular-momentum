@@ -5,15 +5,15 @@ import linkedhu_ceng.demo.dto.UserDto;
 import linkedhu_ceng.demo.dto.PostDto;
 import linkedhu_ceng.demo.entity.Post;
 import linkedhu_ceng.demo.entity.User;
+import linkedhu_ceng.demo.repository.PostRepository;
 import linkedhu_ceng.demo.repository.UserRepository;
 import linkedhu_ceng.demo.service.PostService;
 import linkedhu_ceng.demo.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.Authentication;
+
 import java.net.URI;
 import java.util.List;
 
@@ -32,6 +32,8 @@ public class PostController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PostRepository postRepository;
 
     //@Autowired
     //SecurityConfig securityService;
@@ -66,6 +68,31 @@ public class PostController {
     public ResponseEntity<?> getPostofUser(@PathVariable String userId){
         List<PostDto> postList = postService.getPostsOfUser(userId);
         return ResponseEntity.ok(postList);
+    }
+
+    @PutMapping("/post/update/{Id}")
+    public ResponseEntity<Post> updatePost(@PathVariable Integer Id, @RequestBody PostDto postDto){
+        User user = userService.getUser();
+        String user_id_to_check = user.getUserId();
+
+        Post post = postRepository.findPostById(Id);
+        if (post.getUser().getUserId().equals(user_id_to_check)){
+            return ResponseEntity.ok(postService.updatePost(postDto,Id));
+        }
+        else{
+            return null;
+        }
+    }
+
+    @DeleteMapping("/post/delete/{Id}")
+    public void deletePost(@PathVariable Integer Id){
+        User user = userService.getUser();
+        String user_id_to_check = user.getUserId();
+
+        Post post = postRepository.findPostById(Id);
+        if (post.getUser().getUserId().equals(user_id_to_check)){
+            postService.deletePost(Id);
+        }
     }
 
 }
