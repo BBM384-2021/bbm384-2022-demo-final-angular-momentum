@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +38,7 @@ public class PostService {
         post.setUser(user);
         post.setContent(content);
         post.setTitle(title);
+        post.setCreatedDate(ZonedDateTime.now());
         return postRepository.save(post);
     }
 
@@ -60,7 +62,7 @@ public class PostService {
         if (postDto.getId()!=null){
             //Do Nothing
             //post.setId(post.getId());
-            ;
+            post.setCreatedDate(ZonedDateTime.now());
         }
         if(postDto.getTitle() != null){
             post.setTitle(postDto.getTitle());
@@ -76,5 +78,4 @@ public class PostService {
     public void deletePost(Integer Id){
         postRepository.deleteById(Id);
     }
-
 }
