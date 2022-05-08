@@ -7,8 +7,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import linkedhu_ceng.demo.model.Post;
-import linkedhu_ceng.demo.model.Comment;
+import linkedhu_ceng.demo.entity.Post;
+import linkedhu_ceng.demo.entity.Comment;
 import linkedhu_ceng.demo.dto.CommentDto;
 import linkedhu_ceng.demo.repository.PostRepository;
 import linkedhu_ceng.demo.repository.CommentRepository;
