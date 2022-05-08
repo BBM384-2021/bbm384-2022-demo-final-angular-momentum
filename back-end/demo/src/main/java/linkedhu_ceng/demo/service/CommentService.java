@@ -30,10 +30,11 @@ public class CommentService {
         comment.setText(commentDto.getText());
         comment.setCreatedById(userId);
 
-        if (comment.getId() == null)
-            comment.setCreatedDate(ZonedDateTime.now());
-        else
-            comment.setCreatedDate(commentDto.getCreatedDate());
+        comment.setCreatedDate(ZonedDateTime.now());
+        //if (comment.getId() == null)
+            //comment.setCreatedDate(ZonedDateTime.now());
+        //else
+            //comment.setCreatedDate(commentDto.getCreatedDate());
 
         return commentRepo.save(comment);
     }
