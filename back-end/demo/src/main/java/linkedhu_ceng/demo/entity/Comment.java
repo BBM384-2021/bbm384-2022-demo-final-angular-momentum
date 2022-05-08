@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
     //@Column(name = "comment_id")
     //@JoinColumn(name = "comment_id",referencedColumnName = "Id")
     //private Integer Id;
@@ -31,11 +31,11 @@ public class Comment {
     private ZonedDateTime createdDate;
 
     public Integer getId() {
-        return Id;
+        return this.id;
     }
 
     public void setId(Integer id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public ZonedDateTime getCreatedDate() {
