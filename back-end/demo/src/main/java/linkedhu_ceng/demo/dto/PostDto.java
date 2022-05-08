@@ -5,7 +5,8 @@ public class PostDto {
     Integer id;
     String title;
     String content;
-
+    ZonedDateTime createdDate;
+    
     public Integer getId() {
         return id;
     }
@@ -28,5 +29,12 @@ public class PostDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 }
