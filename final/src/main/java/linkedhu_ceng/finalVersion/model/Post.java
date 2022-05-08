@@ -1,6 +1,7 @@
 package linkedhu_ceng.finalVersion.model;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity
@@ -20,7 +21,7 @@ public class Post {
     private String content;
 
     @Column(name="createdDate", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date createdDate;
+    private ZonedDateTime createdDate;
 
     public Post() {
     }
@@ -57,11 +58,11 @@ public class Post {
         this.title = title;
     }
 
-    public Date getCreatedDate() {
+    public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
     }
 }
