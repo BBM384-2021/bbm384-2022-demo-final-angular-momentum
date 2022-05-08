@@ -41,6 +41,7 @@ public class PostService {
         post.setUser(user);
         post.setContent(content);
         post.setTitle(title);
+        post.setCreatedDate(ZonedDateTime.now());
         return postRepository.save(post);
     }
 
@@ -64,7 +65,7 @@ public class PostService {
         if (postDto.getId()!=null){
             //Do Nothing
             //post.setId(post.getId());
-            ;
+            post.setCreatedDate(ZonedDateTime.now());
         }
         if(postDto.getTitle() != null){
             post.setTitle(postDto.getTitle());
