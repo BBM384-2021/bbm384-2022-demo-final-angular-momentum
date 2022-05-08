@@ -3,11 +3,11 @@ package linkedhu_ceng.demo.repository;
 
 import java.util.Set;
 
-import linkedhu_ceng.demo.model.Post;
+import linkedhu_ceng.demo.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import linkedhu_ceng.demo.model.Comment;
+import linkedhu_ceng.demo.entity.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer>{
 
