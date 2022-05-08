@@ -1,10 +1,13 @@
 package linkedhu_ceng.finalVersion.dto;
 
 
+import java.time.ZonedDateTime;
+
 public class PostDto {
     Integer id;
     String title;
     String content;
+    ZonedDateTime createdDate;
 
     public Integer getId() {
         return id;
@@ -13,7 +16,7 @@ public class PostDto {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getTitle() {
         return title;
     }
@@ -28,5 +31,12 @@ public class PostDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 }
