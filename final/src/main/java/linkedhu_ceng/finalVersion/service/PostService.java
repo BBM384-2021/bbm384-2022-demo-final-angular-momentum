@@ -32,10 +32,11 @@ public class PostService {
     //@Autowired
     //SecurityConfig securityService;
 
-    public Post savePost(UserDto userDto, String content, String title){
+    public Post savePost(UserDto userDto, String type, String content, String title){
         Post post = new Post();
         User user = userRepository.findUserByEmail(userDto.getEmail());
         post.setUser(user);
+        post.setPostType(type);
         post.setContent(content);
         post.setTitle(title);
         post.setCreatedDate(ZonedDateTime.now());
