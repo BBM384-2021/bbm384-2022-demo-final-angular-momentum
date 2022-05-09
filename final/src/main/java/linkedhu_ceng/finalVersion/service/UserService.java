@@ -1,5 +1,6 @@
 package linkedhu_ceng.finalVersion.service;
 
+import linkedhu_ceng.finalVersion.dto.PasswordDto;
 import linkedhu_ceng.finalVersion.dto.SignUpDto;
 import linkedhu_ceng.finalVersion.model.Post;
 import linkedhu_ceng.finalVersion.model.User;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -57,6 +59,12 @@ public class UserService {
         return user;
     }
 
+    public void updatePassword(PasswordDto passwordDto){
+        User user = getUser();
+        user.setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
+        userRepository.save(user);
+    }
+
     public void deleteUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userId = authentication.getName();
@@ -68,6 +76,32 @@ public class UserService {
             iterator.remove(); //remove the child first
         }
         userRepository.deleteById(userId);
+    }
+
+    public String convertRole(String role){
+        if(Objects.equals(role, "ROLE_STUDENT")){
+            return "Student";
+        }
+
+        else if(Objects.equals(role, "ROLE_ACADEMICIAN")){
+            return "Academician";
+        }
+
+        else if(Objects.equals(role, "ROLE_GRADUATE")){
+            return "Graduate";
+        }
+
+        else if(Objects.equals(role, "ROLE_STUDENT_REP")){
+            return "Student Representative";
+        }
+
+        else if(Objects.equals(role, "ROLE_ADMIN")){
+            return "Admin";
+        }
+
+        else{
+            return "";
+        }
     }
 
     public List<User> getAllUser(){
