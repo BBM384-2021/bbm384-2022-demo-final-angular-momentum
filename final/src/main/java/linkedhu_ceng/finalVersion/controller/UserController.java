@@ -1,10 +1,14 @@
 package linkedhu_ceng.finalVersion.controller;
 
 
+import linkedhu_ceng.finalVersion.dto.PasswordDto;
 import linkedhu_ceng.finalVersion.dto.SignUpDto;
+import linkedhu_ceng.finalVersion.model.User;
 import linkedhu_ceng.finalVersion.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/user")
 public class UserController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     UserService userService;
@@ -34,6 +41,23 @@ public class UserController {
     @DeleteMapping("/delete")
     public void deleteUser(){
         userService.deleteUser();
+    }
+
+    @PutMapping("/update/password")
+    public ResponseEntity<?> updateUserPassword(@RequestBody PasswordDto passwordDto){
+
+        User user = userService.getUser();
+        System.out.println(passwordEncoder.encode(passwordDto.getOldPassword()));
+        System.out.println(user.getPassword());
+        System.out.println(passwordEncoder.encode("0000"));
+        if(passwordEncoder.matches(passwordDto.getOldPassword(), user.getPassword())
+                && passwordDto.getNewPassword().equals(passwordDto.getConfirmation())){
+            userService.updatePassword(passwordDto);
+            return ResponseEntity.ok("Password updated successfully");
+        }
+        else{
+        return new ResponseEntity<>("Problem with password!", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/multiValue")
