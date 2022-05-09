@@ -18,10 +18,17 @@ public class EmailService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserService userService;
+
     public void sendEmail(String role, String title, String body){
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("linkedhuceng.assist@gmail.com");
+
+        User currentUser = userService.getUser();
+        String currentUserNameSurname = currentUser.getName() + " " + currentUser.getSurname();
+        String currentUserRole = userService.convertRole(currentUser.getRoles().get(1).getName());
 
         List<User> temp_list = userRepository.findAll();
         for (User user : temp_list) {
@@ -29,10 +36,26 @@ public class EmailService {
                 if (user.getRoles().get(k).getName().contains(role)) {
                     message.setTo(user.getEmail());
                     message.setSubject(title);
-                    message.setText(body);
+                    message.setText("-- " + currentUserRole + " " + currentUserNameSurname + " sent email -- \n\n" +body);
+                    message.setReplyTo(currentUser.getEmail());
                     mailSender.send(message);
                 }
             }
         }
+    }
+
+
+    public void sendRegistrationEmail(String userNameSurname, String userId, String email){
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("linkedhuceng.assist@gmail.com");
+
+        message.setTo(email);
+        message.setSubject("Welcome to LinkedHU_CENG!");
+        message.setText("Dear " + userNameSurname + ",\n" +
+        "Welcome to LinkedHU_CENG. You registered successfully!\n"
+                + "Your User ID is " + userId + "\n" +
+                "You can login with your User ID and password");
+        mailSender.send(message);
     }
 }
