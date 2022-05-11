@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class EmailDto {
-    private String role;
+    private String[] role;
     private String title;
     private String body;
 }
