@@ -10,6 +10,7 @@ import linkedhu_ceng.finalVersion.model.User;
 import linkedhu_ceng.finalVersion.repository.RoleRepository;
 import linkedhu_ceng.finalVersion.repository.UserRepository;
 import linkedhu_ceng.finalVersion.service.CustomUserDetailsService;
+import linkedhu_ceng.finalVersion.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +19,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.*;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -33,6 +39,8 @@ public class AuthController {
 
     User user;
 
+    @Autowired
+    EmailService emailService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -107,6 +115,8 @@ public class AuthController {
         Map<String,Object> model = new HashMap<String,Object>();
         model.put("id", user.getUserId());
         model.put("nameSurname", user.getName() + " " + user.getSurname());
+        String nameSurname = user.getName() + " " + user.getSurname();
+        emailService.sendRegistrationEmail(nameSurname, user.getUserId(), user.getEmail());
         return model;
     }
 
@@ -133,14 +143,12 @@ public class AuthController {
     }
 
 
-    /*@GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        URL url = new URL(request.getRequestURL().toString());
-        String urlStr = url.getProtocol() + "://" + url.getAuthority();
-        return "redirect:" + ssoServiceUrl + "/logout.do?redirect=" + urlStr + "&clientId=" + clientId;
-    }*/
+        return ResponseEntity.ok("Successfully logged out!");
+    }
 }

@@ -45,7 +45,7 @@ public class PostController {
         //UserDto user = securityService.getUser();
         User user = userService.getUser();
         UserDto user_v2 = new UserDto(user);
-        Post savedPost = postService.savePost(user_v2,post.getContent(),post.getTitle());
+        Post savedPost = postService.savePost(user_v2,post.getPostType(), post.getContent(),post.getTitle());
         return ResponseEntity.created(URI.create("/private/mypost")).body(savedPost);
     }
 

@@ -2,7 +2,6 @@ package linkedhu_ceng.finalVersion.model;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "posts")
@@ -17,6 +16,7 @@ public class Post {
     private User user;
 
     @Column(columnDefinition="TEXT")
+    private String postType;
     private String title;
     private String content;
 
@@ -64,5 +64,13 @@ public class Post {
 
     public void setCreatedDate(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getPostType() {
+        return postType;
+    }
+
+    public void setPostType(String type) {
+        this.postType = type;
     }
 }
