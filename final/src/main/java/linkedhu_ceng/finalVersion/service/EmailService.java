@@ -34,7 +34,7 @@ public class EmailService {
         for(String role : roleList){
             for (User user : temp_list) {
                 for (int k = 0; k < user.getRoles().size(); k++) {
-                    if (user.getRoles().get(k).getName().contains(role) && user.getIsRegistered().equals("true")) {
+                    if (user.getRoles().get(k).getName().contains(role)) {
                         message.setTo(user.getEmail());
                         message.setSubject(title);
                         message.setText("-- " + currentUserRole + " " + currentUserNameSurname + " sent email -- \n\n" +body);
