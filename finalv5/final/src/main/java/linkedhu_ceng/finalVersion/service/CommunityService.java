@@ -68,7 +68,16 @@ public class CommunityService {
         communityRepository.save(community);
         return community.getUserId();
     }
-
+    
+    public List<String> leaveCommunity (Integer Id, String uid){
+        Community community = communityRepository.findCommunityById(Id);
+        List<String> members = this.getUsersOfCommunity(Id);
+        members.remove(uid);
+        community.setUserId(members);
+        communityRepository.save(community);
+        return community.getUserId();
+    }
+    
     public List<String> getUsersOfCommunity(Integer Id){
         Community community = communityRepository.findCommunityById(Id);
 
