@@ -67,6 +67,10 @@ public class AuthController {
             return new ResponseEntity<>("User with ID: " + loginDto.getUserId() +" does not exist!", HttpStatus.BAD_REQUEST);
         }
 
+        else if(!userRepository.findUserByUserId(loginDto.getUserId()).getIsRegistered().equals("true")){
+            return new ResponseEntity<>("Pending registration request of user with ID: " + loginDto.getUserId(), HttpStatus.BAD_REQUEST);
+        }
+
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUserId(), loginDto.getPassword()));
 
@@ -104,19 +108,19 @@ public class AuthController {
         tempList.add(role2);
         user.setRoles(tempList);
 
+        if(user.getRoles().get(1).getName().equals("ROLE_ADMIN")){
+            user.setIsRegistered("true");
+        }
+
         userRepository.save(user);
-
         return new ResponseEntity<>("{\"userId\" : \""+user.getUserId()+"\"}", HttpStatus.OK);
-
     }
 
     @GetMapping("/signup/success")
     public Map<String,Object> success(){
         Map<String,Object> model = new HashMap<String,Object>();
-        model.put("id", user.getUserId());
+        model.put("email", user.getEmail());
         model.put("nameSurname", user.getName() + " " + user.getSurname());
-        String nameSurname = user.getName() + " " + user.getSurname();
-        emailService.sendRegistrationEmail(nameSurname, user.getUserId(), user.getEmail());
         return model;
     }
 
