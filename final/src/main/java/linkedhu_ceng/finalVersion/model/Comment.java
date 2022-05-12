@@ -22,6 +22,7 @@ public class Comment {
 
 
     private String createdById;
+    private String nameSurname;
     //@JoinColumn(name = "id",referencedColumnName = "postId")
     private Integer postId;
 
@@ -68,5 +69,13 @@ public class Comment {
 
     public void setPost(Integer post) {
         this.postId = post;
+    }
+
+    public String getNameSurname() {
+        return nameSurname;
+    }
+
+    public void setNameSurname(String nameSurname) {
+        this.nameSurname = nameSurname;
     }
 }
