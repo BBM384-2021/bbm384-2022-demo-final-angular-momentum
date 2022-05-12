@@ -20,7 +20,7 @@ public class CommentService {
     @Autowired
     private PostRepository PostRepo;
 
-    public Comment save(CommentDto commentDto, String userId, Integer postId) {
+    public Comment save(CommentDto commentDto, String userId, String nameSurname, Integer postId) {
         Comment comment = new Comment();
         //Post Post = PostRepo.getById(commentDto.getPostId());
 
@@ -28,6 +28,7 @@ public class CommentService {
         comment.setPost(postId);
         comment.setText(commentDto.getText());
         comment.setCreatedById(userId);
+        comment.setNameSurname(nameSurname);
 
         comment.setCreatedDate(ZonedDateTime.now());
         //if (comment.getId() == null)
@@ -36,6 +37,13 @@ public class CommentService {
         //comment.setCreatedDate(commentDto.getCreatedDate());
 
         return commentRepo.save(comment);
+    }
+
+    public Comment update(CommentDto commentDto, Integer id){
+
+        Comment tempComment = commentRepo.findCommentById(id);
+        tempComment.setText(commentDto.getText());
+        return commentRepo.save(tempComment);
     }
 
     public Set<Comment> getCommentsByPostId(Integer PostId) {
