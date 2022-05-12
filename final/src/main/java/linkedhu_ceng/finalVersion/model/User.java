@@ -20,6 +20,7 @@ public class User {
     private String email;
     private String password;
     private String phoneNumber;
+    private String isRegistered = "false";
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(name = "user_roles",
