@@ -1,6 +1,7 @@
 package linkedhu_ceng.finalVersion.repository;
 
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +16,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer>{
     Set<Comment> findByPostId(Integer postId);
 
     Comment findCommentById(Integer Id);
+
+    List<Comment> findCommentByCreatedByIdOrderById(String createdById);
 
 }
