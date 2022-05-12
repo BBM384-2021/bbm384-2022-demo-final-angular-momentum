@@ -44,7 +44,8 @@ public class CommentController {
         User user = userService.getUser();
         UserDto user_v2 = new UserDto(user);
         String userId = user_v2.getUid();
-        Comment comment = commentService.save(commentDto, userId, postId);
+        String nameSurname = user.getName()+" "+user.getSurname();
+        Comment comment = commentService.save(commentDto, userId, nameSurname, postId);
 
         return ResponseEntity.ok(comment);
     }
@@ -52,13 +53,11 @@ public class CommentController {
     @PutMapping("{postId}/comment/update/{Id}")
     public ResponseEntity<Comment> updateComment (@PathVariable Integer postId, @PathVariable Integer Id, @RequestBody CommentDto commentDto) {
         User user = userService.getUser();
-        UserDto user_v2 = new UserDto(user);
-        String userId = user_v2.getUid();
+        String userId = user.getUserId();
 
         Comment comment = commentRepository.findCommentById(Id);
         if(comment.getCreatedById().equals(userId)){
-            Comment comment_v2 = commentService.save(commentDto, userId, postId);
-
+            Comment comment_v2 = commentService.update(commentDto, Id);
             return ResponseEntity.ok(comment_v2);
         }
 
@@ -76,7 +75,7 @@ public class CommentController {
     }
 
     @DeleteMapping("{postId}/comment/delete/{Id}")
-    public ResponseEntity<?> deleteComment (@PathVariable Integer postId, @PathVariable Integer Id) {
+    public void deleteComment (@PathVariable Integer postId, @PathVariable Integer Id) {
 
         User user = userService.getUser();
         UserDto user_v2 = new UserDto(user);
@@ -86,17 +85,15 @@ public class CommentController {
         if(comment.getCreatedById().equals(userId)){
             try {
                 commentService.delete(Id);
-                return ResponseEntity.ok("Comment deleted");
+                //return ResponseEntity.ok("Comment deleted");
             } catch (Exception e) {
                 e.printStackTrace();
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+                //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }
 
         else{
-            return null;
+            return;
         }
-
-
     }
 }
