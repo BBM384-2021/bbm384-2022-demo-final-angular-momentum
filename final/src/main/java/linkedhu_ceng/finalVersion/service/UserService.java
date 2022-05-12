@@ -2,8 +2,10 @@ package linkedhu_ceng.finalVersion.service;
 
 import linkedhu_ceng.finalVersion.dto.PasswordDto;
 import linkedhu_ceng.finalVersion.dto.SignUpDto;
+import linkedhu_ceng.finalVersion.model.Comment;
 import linkedhu_ceng.finalVersion.model.Post;
 import linkedhu_ceng.finalVersion.model.User;
+import linkedhu_ceng.finalVersion.repository.CommentRepository;
 import linkedhu_ceng.finalVersion.repository.PostRepository;
 import linkedhu_ceng.finalVersion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +14,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
 
     @Autowired
     PostRepository postRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -73,7 +75,30 @@ public class UserService {
         for (Iterator<Post> iterator = posts.iterator(); iterator.hasNext();) {
             Post post = iterator.next();
             post.setUser(null);
-            iterator.remove(); //remove the child first
+
+            try {
+                Set<Comment> comments = commentRepository.findByPostId(post.getId());
+                for (Iterator<Comment> iterator_comment = comments.iterator(); iterator_comment.hasNext(); ) {
+                    Comment comment = iterator_comment.next();
+                    comment.setPost(null);
+                    commentRepository.deleteById(comment.getId());
+                    iterator_comment.remove();
+                }
+            }
+
+            finally {
+                postRepository.deleteById(post.getId());
+                iterator.remove(); //remove the child first
+            }
+
+        }
+
+        List<Comment> comments = commentRepository.findCommentByCreatedByIdOrderById(userId);
+        for (Iterator<Comment> iterator = comments.iterator(); iterator.hasNext();) {
+            Comment comment= iterator.next();
+            comment.setPost(null);
+            commentRepository.deleteById(comment.getId());
+            iterator.remove();
         }
         userRepository.deleteById(userId);
     }
