@@ -76,6 +76,16 @@ public class PostService {
     }
 
     public void deletePost(Integer Id){
-        postRepository.deleteById(Id);
+        try {
+            Set<Comment> comments = commentRepository.findByPostId(Id);
+            for (Iterator<Comment> iterator_comment = comments.iterator(); iterator_comment.hasNext(); ) {
+                Comment comment = iterator_comment.next();
+                comment.setPost(null);
+                commentRepository.deleteById(comment.getId());
+                iterator_comment.remove();
+            }
+        }
+        finally{
+        postRepository.deleteById(Id);}
     }
 }
