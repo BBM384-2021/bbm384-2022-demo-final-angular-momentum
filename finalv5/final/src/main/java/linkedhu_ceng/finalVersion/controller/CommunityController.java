@@ -61,7 +61,7 @@ public class CommunityController {
     }
 
     @PutMapping("community/update/{Id}")
-    public ResponseEntity<Community> updatePost(@PathVariable Integer Id, @RequestBody CommunityDto communityDto){
+    public ResponseEntity<Community> updateCommunity(@PathVariable Integer Id, @RequestBody CommunityDto communityDto){
         User user = userService.getUser();
         String user_id_to_check = user.getUserId();
 
@@ -75,7 +75,7 @@ public class CommunityController {
     }
 
     @PutMapping("community/join/{Id}")
-    public ResponseEntity<List<String>> updatePost(@PathVariable Integer Id){
+    public ResponseEntity<List<String>> joinCommunity(@PathVariable Integer Id){
         User user = userService.getUser();
         String user_id = user.getUserId();
 
@@ -83,8 +83,17 @@ public class CommunityController {
 
     }
 
+    @DeleteMapping("community/leave/{Id}")
+    public ResponseEntity<List<String>> leaveCommunity(@PathVariable Integer Id){
+        User user = userService.getUser();
+        String user_id = user.getUserId();
+
+        return ResponseEntity.ok(communityService.leaveCommunity(Id,user_id));
+
+    }
+
     @DeleteMapping("/community/delete/{Id}")
-    public void deletePost(@PathVariable Integer Id){
+    public void deleteCommunity(@PathVariable Integer Id){
         User user = userService.getUser();
         String user_id_to_check = user.getUserId();
 
@@ -93,5 +102,4 @@ public class CommunityController {
             communityService.deleteCommunity(Id);
         }
     }
-
 }
