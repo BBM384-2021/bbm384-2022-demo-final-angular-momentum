@@ -95,4 +95,8 @@ public class PostController {
         }
     }
 
+    @PostMapping("post/search")
+    public ResponseEntity<List<Post>> searchPost(@RequestBody PostDto postDto){
+        return ResponseEntity.ok(postService.searchPost(postDto.getTitle()));
+    }
 }
