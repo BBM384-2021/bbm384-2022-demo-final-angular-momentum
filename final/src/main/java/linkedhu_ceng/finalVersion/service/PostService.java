@@ -4,8 +4,10 @@ package linkedhu_ceng.finalVersion.service;
 //import SecurityConfig;
 import linkedhu_ceng.finalVersion.dto.UserDto;
 import linkedhu_ceng.finalVersion.dto.PostDto;
+import linkedhu_ceng.finalVersion.model.Comment;
 import linkedhu_ceng.finalVersion.model.Post;
 import linkedhu_ceng.finalVersion.model.User;
+import linkedhu_ceng.finalVersion.repository.CommentRepository;
 import linkedhu_ceng.finalVersion.repository.PostRepository;
 import linkedhu_ceng.finalVersion.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -13,15 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class PostService {
 
     @Autowired
     PostRepository postRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -77,6 +80,27 @@ public class PostService {
     }
 
     public void deletePost(Integer Id){
-        postRepository.deleteById(Id);
+        try {
+            Set<Comment> comments = commentRepository.findByPostId(Id);
+            for (Iterator<Comment> iterator_comment = comments.iterator(); iterator_comment.hasNext(); ) {
+                Comment comment = iterator_comment.next();
+                comment.setPost(null);
+                commentRepository.deleteById(comment.getId());
+                iterator_comment.remove();
+            }
+        }
+        finally{
+            postRepository.deleteById(Id);}
+    }
+
+    public List<Post> searchPost(String text){
+        List<Post> posts = postRepository.findAll();
+        List<Post> returnPost = new ArrayList<>();
+        for(Post post : posts){
+            if(post.getTitle().toLowerCase().contains(text.toLowerCase()) || post.getContent().toLowerCase().contains(text.toLowerCase())){
+                returnPost.add(post);
+            }
+        }
+        return returnPost;
     }
 }
