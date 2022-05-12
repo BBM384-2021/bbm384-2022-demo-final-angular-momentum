@@ -65,7 +65,30 @@ public class UserService {
         for (Iterator<Post> iterator = posts.iterator(); iterator.hasNext();) {
             Post post = iterator.next();
             post.setUser(null);
-            iterator.remove(); //remove the child first
+
+            try {
+                Set<Comment> comments = commentRepository.findByPostId(post.getId());
+                for (Iterator<Comment> iterator_comment = comments.iterator(); iterator_comment.hasNext(); ) {
+                    Comment comment = iterator_comment.next();
+                    comment.setPost(null);
+                    commentRepository.deleteById(comment.getId());
+                    iterator_comment.remove();
+                }
+            }
+
+            finally {
+                postRepository.deleteById(post.getId());
+                iterator.remove(); //remove the child first
+            }
+
+        }
+
+        List<Comment> comments = commentRepository.findCommentByCreatedByIdOrderById(userId);
+        for (Iterator<Comment> iterator = comments.iterator(); iterator.hasNext();) {
+            Comment comment= iterator.next();
+            comment.setPost(null);
+            commentRepository.deleteById(comment.getId());
+            iterator.remove();
         }
         userRepository.deleteById(userId);
     }
